@@ -13,8 +13,13 @@ void run(HookContext context) {
   final allModules =
       module.listSync().map((e) => e.path.split('/').last).toList();
 
-  context.vars['module'] =
-      logger.chooseOne('Select Module: ', choices: allModules);
+  final moduleValue = context.vars['module']?.toString();
+  if (moduleValue == null ||
+      moduleValue.isEmpty ||
+      allModules.contains(moduleValue) == false) {
+    context.vars['module'] =
+        logger.chooseOne('Select Module: ', choices: allModules);
+  }
 
   //GEN Route
   final screenName = context.vars['name'].toString();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'app/home.dart';
+import 'package:test_flutter_lartest_tech/config/router/app_router.dart';
 import 'theme_extension.dart';
 
 void main() {
@@ -15,10 +14,10 @@ class MyApp extends StatelessWidget {
     return ValueListenableBuilder(
         valueListenable: nightTheme.isNight,
         builder: (_, isNight, __) {
-          return MaterialApp(
+          return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             themeAnimationCurve: Curves.bounceInOut,
-            title: 'Flutter Demo',
+            title: 'Flutter Experiment',
             themeMode: isNight ? ThemeMode.dark : ThemeMode.light,
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
             darkTheme: ThemeData.dark(),
-            home: const MyHomePage(),
+            routerConfig: appRouter,
           );
         });
   }
